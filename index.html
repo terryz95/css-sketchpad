@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>CSS SketchPad</title>
+	<link rel="stylesheet" href="effect.css">
+</head>
+<body>
+	<section class="card">
+		<div class="dynamic-heart">
+			<div class="heart"></div>
+			<div class="heart mask"></div>
+		</div>
+	</section>
+	<section class="card">
+		<div class="bubble">
+			<span>Bubble Tip</span>
+		</div>
+	</section>
+	<section class="card">
+		<div class="notching"></div>
+	</section>
+	<section class="card">
+		<div class="hammer-box">
+			<div class="hammer"></div>
+		</div>
+	</section>
+	<section class="card">
+		<div class="arc"></div>
+	</section>
+	<section class="card">
+		<div class="coupon-box">
+			<div class="coupon coupon-left"></div>
+			<div class="coupon coupon-right"></div>
+		</div>
+	</section>
+	<section class="card">
+		<div class="trapezoid"></div>
+	</section>
+	<section class="card">
+		<div class="pie"></div>
+	</section>
+	<section class="card">
+		<div class="parallelogram"></div>
+	</section>
+	<section class="card">
+		<div class="corner"></div>
+	</section>
+	<section class="card">
+		<div class="stripe"></div>
+	</section>
+	<section class="card">
+		<div class="mix-background"></div>
+	</section>
+	<section class="card">
+		<div class="weather blue sunny">
+		</div>
+	</section>
+	<section class="card">
+		<div class="weather blue cloudy">
+			<div class="shadow"></div>
+		</div>
+	</section>
+	<section class="card">
+		<div class="weather blue cloudy2sunny">
+			<div class="shadow"></div>
+		</div>
+	</section>
+	<section class="card">
+		<div class="weather gray rainy">
+			<div class="shadow"></div>
+		</div>
+	</section>
+	<section class="card">
+		<div class="weather gray thunder">
+			<div class="shadow"></div>
+		</div>
+	</section>
+	<section class="card">
+		<div class="weather blue snowy">
+			<div class="shadow"></div>
+		</div>
+	</section>
+	<section class="card">
+		<div class="weather black night-sky"></div>
+	</section>
+	<section class="card">
+		<div class="weather blue">
+			<div class="breeze"></div>
+			<div class="rod"></div>
+		</div>
+	</section>
+	<section class="card">
+		<div class="weather yellow rainbow">
+			<div class="shadow"></div>
+		</div>
+	</section>
+	<section class="card">
+		<div class="pentagram"></div>
+	</section>
+	<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+	<script>
+		$(function(){
+			$('.dynamic-heart').click(function() {
+				$('.mask').toggleClass('active');
+			})
+		});
+	</script>
+</body>
+</html>

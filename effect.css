@@ -1,0 +1,1047 @@
+* {
+	box-sizing: border-box;
+}
+
+.card {
+	position: relative;
+	width: 100%;
+	height: 300px;
+	background-color: #fff
+}
+
+.curtain {
+	background: #1f3134;
+}
+
+/* heart & dynamic heart
+   原理是用一个缩放的心形mask控制颜色
+   ========================================================================== */
+.heart {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	transform: translate(-50%, -50%) rotate(45deg);
+	/* 水平垂直居中，旋转45° */
+	background: #ce5242;
+}
+
+/*旋转相当于把整个坐标系旋转，按照旋转后的坐标系设置top、left*/
+.heart::before,
+.heart::after {
+	box-sizing: border-box;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -50px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: #ce5242;
+}
+
+.heart::after {
+	top: -50px;
+	left: 0;
+}
+
+.mask {
+	z-index: 2;
+	width: 90px;
+	height: 90px;
+	background: #fff;
+	transition: all 0.2s ease;
+}
+
+.mask.active {
+	background: #ce5242;
+}
+
+.mask::before,
+.mask::after {
+	width: 90px;
+	height: 90px;
+	background: #fff;
+	transition: all 0.2s ease;
+}
+
+.mask.active::before,
+.mask.active::after {
+	background: #ce5242;
+}
+
+/* bubble
+	 ========================================================================== */
+.bubble {
+	position: absolute;
+	max-width: 300px;
+	height: 60px;
+	line-height: 60px;
+	padding: 0 20px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #fdeff2;
+	border-radius: 8px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #1f3134;
+	text-align: center;
+}
+
+.bubble::after {
+	content: '';
+	position: absolute;
+	margin: 0 0 -26px -13px;
+	left: 50%;
+	bottom: 0;
+	border: 26px solid transparent;
+	border-bottom: 0;
+	border-left: 0;
+	border-top-color: #fdeff2;
+}
+
+/*控制提示框内部文字过长后的表现*/
+.bubble>span {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/* notching 线性渐变平切角
+	 ========================================================================== */
+.notching {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 240px;
+	padding: 60px 20px;
+	transform: translate(-50%, -50%);
+
+	background:
+		linear-gradient(135deg, transparent 15px, #ed5736 0) top left,
+		linear-gradient(-135deg, transparent 15px, #ed5736 0) top right,
+		linear-gradient(-45deg, transparent 15px, #ed5736 0) bottom right,
+		linear-gradient(45deg, transparent 15px, #ed5736 0) bottom left;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+/* hammer 用平切角画个锤子
+	 ========================================================================== */
+.hammer {
+	position: absolute;
+	top: 34%;
+	left: 47%;
+	width: 160px;
+	padding: 40px 20px;
+	transform: translate(-50%, -50%) rotate(-15deg);
+
+	background:
+		linear-gradient(135deg, transparent 12px, #f5f5f5 12px, #e5e5e5, #e2e2e2, #f5f5f5, #eee) top left,
+		linear-gradient(-135deg, transparent 12px, #f5f5f5 12px, #e5e5e5, #e2e2e2, #f5f5f5, #eee) top right,
+		linear-gradient(-45deg, transparent 12px, #f5f5f5 12px, #e5e5e5, #e2e2e2, #f5f5f5, #eee) bottom right,
+		linear-gradient(45deg, transparent 12px, #f5f5f5 12px, #e5e5e5, #e2e2e2, #f5f5f5, #eee) bottom left;
+
+	background-size: 51% 51%;
+	background-repeat: no-repeat;
+
+	border-radius: 24px;
+}
+
+.hammer::before {
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: -10px;
+	width: 14px;
+	height: 10px;
+	transform: translateX(-50%);
+	background: #b68d4c;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+}
+
+.hammer::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: 70px;
+	width: 14px;
+	height: 100px;
+	transform: translateX(-50%);
+	background: #b68d4c;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+/* arc 径向渐变弧切角
+	 ========================================================================== */
+.arc {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 240px;
+	padding: 60px 20px;
+	transform: translate(-50%, -50%);
+
+	background:
+		radial-gradient(circle at top left, transparent 15px, #ffa400 0) top left,
+		radial-gradient(circle at top right, transparent 15px, #ffa400 0) top right,
+		radial-gradient(circle at bottom right, transparent 15px, #ffa400 0) bottom right,
+		radial-gradient(circle at bottom left, transparent 15px, #ffa400 0) bottom left;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+/* coupon 用弧切角画一张优惠券
+	 ========================================================================== */
+.coupon-box {
+	position: relative;
+	width: 240px;
+	height: 60px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.coupon {
+	position: absolute;
+	height: 60px;
+}
+
+.coupon-left {
+	width: 60px;
+	left: 0;
+	background:
+		radial-gradient(circle at top left, transparent 0, #D95D4C 0) top left,
+		radial-gradient(circle at top right, transparent 6px, #D95D4C 0) top right,
+		radial-gradient(circle at bottom right, transparent 6px, #D95D4C 0) bottom right,
+		radial-gradient(circle at bottom left, transparent 0, #D95D4C 0) bottom left;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.coupon-right {
+	width: 180px;
+	left: 60px;
+	background:
+		radial-gradient(circle at top left, transparent 6px, #e0e0e0 0) top left,
+		radial-gradient(circle at top right, transparent 0, #e0e0e0 0) top right,
+		radial-gradient(circle at bottom right, transparent 0, #e0e0e0 0) bottom right,
+		radial-gradient(circle at bottom left, transparent 6px, #e0e0e0 0) bottom left;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+/* trapezoid 画一个梯形
+	 ========================================================================== */
+.trapezoid {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 280px;
+	padding: 60px;
+}
+
+.trapezoid::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transform: perspective(40px) scaleY(1.3) rotateX(5deg);
+	transform-origin: bottom;
+	/*变换初始的原点位置，默认值是center center 0，即图形的中心点*/
+	background: #2a83a2;
+}
+
+/* pie 画一个饼图
+	 ========================================================================== */
+.pie {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	text-align: center;
+	background-color: #ffea00;
+	background-image: linear-gradient(to right, transparent 50%, #47885e 0);
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.pie::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	background-color: inherit;
+	transform-origin: left;
+	transform: rotate(.1turn);
+	transition: all 1s;
+}
+
+.pie:hover::before {
+	transition: all 1s;
+	transform: rotate(.45turn);
+}
+
+/* parallelogram 画一个饼图
+	 ========================================================================== */
+.parallelogram {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 120px;
+
+}
+
+.parallelogram::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #2a83a2;
+	z-index: -1;
+	transform: skew(0.05turn);
+}
+
+/* corner 画一个折角便签
+	 ========================================================================== */
+.corner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 200px;
+	padding: 40px;
+	background: linear-gradient(-150deg, transparent 24px, #007b43 0);
+	border-radius: 8px;
+}
+
+.corner::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: linear-gradient(to left bottom, transparent 50%, rgba(0, 0, 0, .2) 0, rgba(0, 0, 0, .4)) 100% 0 no-repeat;
+	width: 28px;
+	height: 48px;
+	transform: translateY(-21px) rotate(-30deg);
+	transform-origin: bottom right;
+	border-bottom-left-radius: inherit;
+	box-shadow: -3px 3px 5px -2px rgba(0, 0, 0, .15);
+}
+
+/* stripe 画一个斜条纹背景
+	 ========================================================================== */
+.stripe {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 200px;
+	border-radius: 8px;
+	background: repeating-linear-gradient(45deg, #a89dac 0, #a89dac 15px, #80989b 0, #80989b 30px)
+}
+
+/* mix-background 背景的混合模式
+	 ========================================================================== */
+.mix-background {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 200px;
+	border-radius: 8px;
+	background:
+		linear-gradient(limegreen, transparent),
+		linear-gradient(90deg, skyblue, transparent),
+		linear-gradient(-90deg, coral, transparent);
+	background-blend-mode: screen;
+}
+
+/* weather 画各种天气
+	 ========================================================================== */
+
+/*背景卡片*/
+.weather {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 200px;
+	height: 260px;
+	transform: translate(-50%, -50%);
+	border-radius: 5px;
+}
+.blue{
+	background: #0BF
+}
+.gray{
+	background: #F8F8F8;
+}
+.yellow{
+	background: #F2D066;
+}
+.black{
+	background: #222233
+}
+/*画太阳*/
+.sunny::before {
+	content: "";
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	background: #ffec47;
+	/*太阳的主体*/
+	box-shadow:
+		0 0 0 15px rgba(255, 255, 0, 0.2),
+		/*范围大、颜色暗的光晕*/
+		0 0 15px #fff;
+	/*范围小、颜色亮的光晕*/
+	z-index: -10;
+}
+/*画射线*/
+.sunny::after {
+	content: "";
+	position: absolute;
+	width: 160px;
+	height: 160px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%) rotate(30deg);
+	/*原理是先从上到下，从左到右，拉两个两边淡中间浓的白色线性渐变*/
+	/*再利用background-size控制两个渐变的尺寸（减到条形）；background-position控制两个渐变的位置（中间）*/
+	background-image:
+		linear-gradient(transparent 0, rgba(255, 255, 255, 0.8) 50%, transparent 100%),
+		/*竖着的射线*/
+		linear-gradient(90deg, transparent 0, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+	/*横着的射线*/
+	background-size: 20px 100%, 100% 20px;
+	/*控制射线的宽窄*/
+	background-repeat: no-repeat;
+	background-position: center center, center center;
+	/*控制射线的位置*/
+	z-index: -100;
+	animation: sunRotate 9s linear infinite;
+}
+/*定义射线旋转动画*/
+@keyframes sunRotate {
+	0% {
+		transform: translate(-50%, -50%) rotate(30deg);
+	}
+
+	100% {
+		transform: translate(-50%, -50%) rotate(390deg);
+	}
+}
+/*画阴天*/
+.cloudy::before {
+	content: "";
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 45%;
+	left: 30%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	border-radius: 50%;
+	box-shadow:
+		65px -15px 0 -5px #fff,
+		25px -25px #fff,
+		30px 10px #fff,
+		60px 15px 0 -10px #fff,
+		85px 5px 0 -5px #fff,
+		35px -35px #c8c8c8,
+		66px -27px 0 -5px #c8c8c8,
+		91px -10px 0 -8px #c8c8c8;
+	animation: cloudy 3s ease-in-out infinite;
+}
+.shadow {
+	content: "";
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 120px;
+	height: 15px;
+	background-color: rgba(0, 0, 0, .5);
+	border-radius: 50%;
+	animation: cloudy_shadow 3s ease-in-out infinite;
+}
+@keyframes cloudy {
+	50% {
+		transform: translate(-50%, -70%);
+	}
+
+	100% {
+		transform: translate(-50%, -50%);
+	}
+}
+@keyframes cloudy_shadow {
+	50% {
+		transform: translate(-50%, -50%) scale(0.8);
+		background: rgba(0, 0, 0, .2);
+	}
+
+	100% {
+		transform: translate(-50%, -50%) scale(1);
+		background: rgba(0, 0, 0, .5);
+	}
+}
+/*画多云转晴*/
+.cloudy2sunny::before {
+	content: "";
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 45%;
+	left: 30%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	border-radius: 50%;
+	box-shadow:
+		65px -15px 0 -5px #fff,
+		25px -25px #fff,
+		30px 10px #fff,
+		60px 15px 0 -10px #fff,
+		85px 5px 0 -5px #fff;
+	animation: cloudy2sunny 3s ease-in-out infinite;
+}
+.cloudy2sunny::after {
+	content: "";
+	position: absolute;
+	z-index: -100;
+	top: 35%;
+	left: 63%;
+	transform: translate(-50%, -50%);
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background: linear-gradient(180deg, #fe9f38 0%, #f46635 100%);
+	box-shadow: 0 0 10px 4px #ffa563;
+	animation: cloudy2sunny 3s ease-in-out infinite;
+}
+@keyframes cloudy2sunny {
+	50% {
+		transform: translate(-50%, -70%);
+	}
+
+	100% {
+		transform: translate(-50%, -50%);
+	}
+}
+/*画雨*/
+.rainy::before {
+	content: "";
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 45%;
+	left: 30%;
+	transform: translate(-50%, -50%);
+	background: #ccc;
+	border-radius: 50%;
+	box-shadow:
+		65px -15px 0 -5px #ccc,
+		25px -25px #ccc,
+		30px 10px #ccc,
+		60px 15px 0 -10px #ccc,
+		85px 5px 0 -5px #ccc;
+	animation: cloudy 3s ease-in-out infinite;
+}
+.rainy::after {
+	content: "";
+	position: absolute;
+	z-index: -100;
+	width: 3px;
+	height: 6px;
+	top: 30%;
+	left: 50%;
+	background: #CCCCCC;
+	border-radius: 50%;
+	animation: rainy_rain .7s linear infinite;
+}
+@keyframes rainy_rain {
+	0% {
+		box-shadow:
+			-10px 30px rgba(0, 0, 0, 0),
+			40px 40px rgba(0, 0, 0, 0),
+			-50px 75px rgba(0, 0, 0, .3),
+			55px 50px rgba(0, 0, 0, .3),
+			-18px 100px rgba(0, 0, 0, .3),
+			12px 95px rgba(0, 0, 0, .3),
+			-31px 45px rgba(0, 0, 0, .3),
+			30px 35px rgba(0, 0, 0, .3);
+	}
+
+	25% {
+		box-shadow:
+			-10px 45px rgba(0, 0, 0, .3),
+			40px 60px rgba(0, 0, 0, .3),
+			-50px 90px rgba(0, 0, 0, .3),
+			55px 65px rgba(0, 0, 0, .3),
+			-18px 120px rgba(0, 0, 0, 0),
+			12px 120px rgba(0, 0, 0, 0),
+			-31px 70px rgba(0, 0, 0, .3),
+			30px 60px rgba(0, 0, 0, .3);
+	}
+
+	26% {
+		box-shadow:
+		 	-10px 45px rgba(0, 0, 0, .3),
+			40px 60px rgba(0, 0, 0, .3),
+			-50px 90px rgba(0, 0, 0, .3),
+			55px 65px rgba(0, 0, 0, .3),
+			-18px 40px rgba(0, 0, 0, 0),
+			12px 20px rgba(0, 0, 0, 0),
+			-31px 70px rgba(0, 0, 0, .3),
+			30px 60px rgba(0, 0, 0, .3);
+	}
+
+	50% {
+		box-shadow: 
+			-10px 70px rgba(0, 0, 0, .3),
+			40px 80px rgba(0, 0, 0, .3),
+			-50px 100px rgba(0, 0, 0, 0),
+			55px 80px rgba(0, 0, 0, .3),
+			-18px 60px rgba(0, 0, 0, .3),
+			12px 45px rgba(0, 0, 0, .3),
+			-31px 95px rgba(0, 0, 0, .3),
+			30px 85px rgba(0, 0, 0, .3);
+	}
+
+	51% {
+		box-shadow: 
+			-10px 70px rgba(0, 0, 0, .3),
+			40px 80px rgba(0, 0, 0, .3),
+			-50px 45px rgba(0, 0, 0, 0),
+			55px 80px rgba(0, 0, 0, .3),
+			-18px 60px rgba(0, 0, 0, .3),
+			12px 45px rgba(0, 0, 0, .3),
+			-31px 95px rgba(0, 0, 0, .3),
+			30px 85px rgba(0, 0, 0, .3);
+	}
+
+	75% {
+		box-shadow: 
+			-10px 95px rgba(0, 0, 0, .3),
+			40px 100px rgba(0, 0, 0, .3),
+			-50px 60px rgba(0, 0, 0, .3),
+			55px 95px rgba(0, 0, 0, 0),
+			-18px 80px rgba(0, 0, 0, .3),
+			12px 70px rgba(0, 0, 0, .3),
+			-31px 120px rgba(0, 0, 0, 0),
+			30px 110px rgba(0, 0, 0, 0);
+	}
+
+	76% {
+		box-shadow: 
+			-10px 95px rgba(0, 0, 0, .3),
+			40px 100px rgba(0, 0, 0, .3),
+			-50px 60px rgba(0, 0, 0, .3),
+			55px 35px rgba(0, 0, 0, 0),
+			-18px 80px rgba(0, 0, 0, .3),
+			12px 70px rgba(0, 0, 0, .3),
+			-31px 25px rgba(0, 0, 0, 0),
+			30px 15px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		box-shadow: 
+			-10px 120px rgba(0, 0, 0, 0),
+			40px 120px rgba(0, 0, 0, 0),
+			-50px 75px rgba(0, 0, 0, .3),
+			55px 50px rgba(0, 0, 0, .3),
+			-18px 100px rgba(0, 0, 0, .3),
+			12px 95px rgba(0, 0, 0, .3),
+			-31px 45px rgba(0, 0, 0, .3),
+			30px 35px rgba(0, 0, 0, .3);
+	}
+}
+/*画雷暴*/
+.thunder::before {
+	content: "";
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 45%;
+	left: 30%;
+	transform: translate(-50%, -50%);
+	background: #212121;
+	border-radius: 50%;
+	box-shadow: 
+		65px -15px 0 -5px #212121,
+		25px -25px #212121,
+		30px 10px #212121,
+		60px 15px 0 -10px #212121,
+		85px 5px 0 -5px #212121;
+	animation: cloudy 3s ease-in-out infinite;
+}
+.thunder:after {
+	content: "";
+	position: absolute;
+	z-index: -100;
+	top: 70%;
+	left: 50%;
+	border-left: 0px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: 38px solid #ffec47;
+	box-shadow: -7px -32px #ffec47;
+	transform: translate(-50%, -50%) rotate(30deg);
+	transform-origin: center -50px;
+	animation: stormy_thunder 2s step-end infinite;
+}
+@keyframes stormy_thunder {	
+	0% {
+		transform: translate(-50%, -50%) rotate(30deg);
+		opacity: 1;
+	}
+
+	5% {
+		transform: translate(-50%, -50%) rotate(-34deg);
+		opacity: 1;
+	}
+
+	10% {
+		transform: translate(-50%, -50%) rotate(0deg);
+		opacity: 1;
+	}
+
+	15% {
+		transform: translate(-50%, -50%) rotate(-34deg);
+		opacity: 0;
+	}
+}
+/*画雪*/
+.snowy::before {
+	content: "";
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 45%;
+	left: 30%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	border-radius: 50%;
+	box-shadow:
+		65px -15px 0 -5px #fff,
+		25px -25px #fff,
+		30px 10px #fff,
+		60px 15px 0 -10px #fff,
+		85px 5px 0 -5px #fff;
+	animation: cloudy 3s ease-in-out infinite;
+}
+.snowy::after {
+	content: "";
+	position: absolute;
+	z-index: -100;
+	width: 6px;
+	height: 6px;
+	top: 30%;
+	left: 50%;
+	background: #fff;
+	border-radius: 50%;
+	animation: snowy_snow 1s linear infinite;
+}
+@keyframes snowy_snow {
+	0% {
+		box-shadow:
+			-10px 30px rgba(255, 255, 255, 0),
+			40px 40px rgba(255, 255, 255, 0),
+			-50px 75px rgba(255, 255, 255, .6),
+			55px 50px rgba(255, 255, 255, .6),
+			-18px 100px rgba(255, 255, 255, .6),
+			12px 95px rgba(255, 255, 255, .6),
+			-31px 45px rgba(255, 255, 255, .6),
+			30px 35px rgba(255, 255, 255, .6);
+	}
+
+	25% {
+		box-shadow:
+			-10px 45px rgba(255, 255, 255, .6),
+			40px 60px rgba(255, 255, 255, .6),
+			-50px 90px rgba(255, 255, 255, .6),
+			55px 65px rgba(255, 255, 255, .6),
+			-18px 120px rgba(255, 255, 255, 0),
+			12px 120px rgba(255, 255, 255, 0),
+			-31px 70px rgba(255, 255, 255, .6),
+			30px 60px rgba(255, 255, 255, .6);
+	}
+
+	26% {
+		box-shadow:
+			-10px 45px rgba(255, 255, 255, .6),
+			40px 60px rgba(255, 255, 255, .6),
+			-50px 90px rgba(255, 255, 255, .6),
+			55px 65px rgba(255, 255, 255, .6),
+			-18px 40px rgba(255, 255, 255, 0),
+			12px 20px rgba(255, 255, 255, 0),
+			-31px 70px rgba(255, 255, 255, .6),
+			30px 60px rgba(255, 255, 255, .6);
+	}
+
+	50% {
+		box-shadow:
+			-10px 70px rgba(255, 255, 255, .6),
+			40px 80px rgba(255, 255, 255, .6),
+			-50px 100px rgba(255, 255, 255, 0),
+			55px 80px rgba(255, 255, 255, .6),
+			-18px 60px rgba(255, 255, 255, .6),
+			12px 45px rgba(255, 255, 255, .6),
+			-31px 95px rgba(255, 255, 255, .6),
+			30px 85px rgba(255, 255, 255, .6);
+	}
+
+	51% {
+		box-shadow:
+			-10px 70px rgba(255, 255, 255, .6),
+			40px 80px rgba(255, 255, 255, .6),
+			-50px 45px rgba(255, 255, 255, 0),
+			55px 80px rgba(255, 255, 255, .6),
+			-18px 60px rgba(255, 255, 255, .6),
+			12px 45px rgba(255, 255, 255, .6),
+			-31px 95px rgba(255, 255, 255, .6),
+			30px 85px rgba(255, 255, 255, .6);
+	}
+
+	75% {
+		box-shadow:
+			-10px 95px rgba(255, 255, 255, .6),
+			40px 100px rgba(255, 255, 255, .6),
+			-50px 60px rgba(255, 255, 255, .6),
+			55px 95px rgba(255, 255, 255, 0),
+			-18px 80px rgba(255, 255, 255, .6),
+			12px 70px rgba(255, 255, 255, .6),
+			-31px 120px rgba(255, 255, 255, 0),
+			30px 110px rgba(255, 255, 255, 0);
+	}
+
+	76% {
+		box-shadow:
+			-10px 95px rgba(255, 255, 255, .6),
+			40px 100px rgba(255, 255, 255, .6),
+			-50px 60px rgba(255, 255, 255, .6),
+			55px 35px rgba(255, 255, 255, 0),
+			-18px 80px rgba(255, 255, 255, .6),
+			12px 70px rgba(255, 255, 255, .6),
+			-31px 25px rgba(255, 255, 255, 0),
+			30px 15px rgba(255, 255, 255, 0);
+	}
+
+	100% {
+		box-shadow:
+			-10px 120px rgba(255, 255, 255, 0),
+			40px 120px rgba(255, 255, 255, 0),
+			-50px 75px rgba(255, 255, 255, .6),
+			55px 50px rgba(255, 255, 255, .6),
+			-18px 100px rgba(255, 255, 255, .6),
+			12px 95px rgba(255, 255, 255, .6),
+			-31px 45px rgba(255, 255, 255, .6),
+			30px 35px rgba(255, 255, 255, .6);
+	}
+}
+/*画星空*/
+.night-sky::before {
+	content: "";
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	top: 30%;
+	left: 40%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	background: #fff;
+	box-shadow: 
+		-26px 77px 0 -1px #fff,
+		-36px 59px 0 -1px rgba(255, 255, 255, .1),
+		-28px 89px 0 -1px rgba(255, 255, 255, .1),
+		-35px 20px 0 -1px #fff,
+		14px 100px #fff,
+		41px 60px rgba(255, 255, 255, .1),
+		34px 39px #fff,
+		14px 45px 0 -1px rgba(255, 255, 255, .1),
+		64px 12px 0 -1px #fff,
+		32px 96px 0 -1px rgba(255, 255, 255, .1),
+		64px 71px #fff,
+		60px 18px 0 -1px rgba(255, 255, 255, .1),
+		34px 9px #fff,
+		-26px 55px 0 -1px rgba(255, 255, 255, .1);
+	animation: starlight 5s ease-in-out infinite;
+}
+.night-sky::after {
+	content: "";
+	position: absolute;
+	top: 25%;
+	left: 40%;
+	width: 100px;
+	height: 100px;
+	box-shadow: -25px 0 #fff;
+	border-radius: 50%;
+	transform: rotate(-5deg);
+	animation: moonlight 5s ease-in-out infinite;
+}
+@keyframes moonlight {
+	50% {
+		transform: rotate(10deg);
+	}
+}
+@keyframes starlight {
+	50% {
+		box-shadow: 
+			-26px 77px 0 -1px rgba(255, 255, 255, .1),
+			-36px 59px 0 -1px #fff,
+			-28px 89px 0 -1px #fff,
+			-35px 20px 0 -1px rgba(255, 255, 255, .1),
+			14px 100px rgba(255, 255, 255, .1),
+			41px 60px #fff,
+			34px 39px rgba(255, 255, 255, .1),
+			14px 45px 0 -1px #fff,
+			64px 12px 0 -1px rgba(255, 255, 255, .1),
+			32px 96px 0 -1px #fff,
+			64px 71px rgba(255, 255, 255, .1),
+			60px 18px 0 -1px#fff,
+			34px 9px rgba(255, 255, 255, .1),
+			-26px 55px 0 -1px #fff;
+	}
+}
+/*画微风*/
+.breeze {
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-bottom: 70px solid #fff;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	transform-origin: center 108%;
+	animation: breeze_rotate 10s linear infinite;
+}
+.breeze::before {
+	content: "";
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	transform: translateX(-50%) rotate(120deg);
+	transform-origin: center 108%;
+	border-bottom: 70px solid #fff;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+}
+.breeze::after {
+	content: "";
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	transform: translateX(-50%) rotate(-120deg);
+	transform-origin: center 108%;
+	border-bottom: 70px solid #fff;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+}
+.rod {
+	position: absolute;
+	top: 47%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 8px;
+	height: 80px;
+	background: #fff
+}
+@keyframes breeze_rotate {
+	0% {
+		transform: translateX(-50%) rotate(0deg);
+	}
+	50% {
+		transform: translateX(-50%) rotate(180deg);
+	}
+	100% {
+		transform: translateX(-50%) rotate(360deg);
+	}
+}
+/*画彩虹*/
+.rainbow::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(45deg);
+	width: 70px;
+	height: 70px;
+	border-radius: 100px 0 0 0;
+	box-shadow: 
+		-2px -2px 0 1px #F44336,
+		-4px -4px 0 3px#FF9800,
+		-6px -6px 0 5px#FFEB3B,
+		-8px -8px 0 7px#8BC34A,
+		-10px -10px 0 9px#00BCD4,
+		-12px -12px 0 11px#2196F3,
+		-14px -14px 0 13px rgb(126, 124, 126);
+	animation: rainbow_rotate 3s ease-in-out infinite;
+}
+@keyframes rainbow_rotate {
+	50% {
+		transform: translate(-50%, -55%) rotate(30deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(45deg);
+	}
+}
+
+/* pentagram 画五角星
+	 ========================================================================== */
+.pentagram {
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 0;
+	height: 0;
+	border-top: 50px solid #98dbe3;
+	border-left: 100px solid transparent;
+	border-right: 100px solid transparent;
+}
+.pentagram::before {
+	content: "";
+	position: absolute;
+	transform: translate(-50%, -100%) rotate(.2turn);
+	width: 0;
+	height: 0;
+	border-top: 50px solid #98dbe3;
+	border-left: 100px solid transparent;
+	border-right: 100px solid transparent;
+}
+.pentagram::after {
+	content: "";
+	position: absolute;
+	transform: translate(-50%, -100%);
+	width: 0;
+	height: 0;
+	border-top: 50px solid yellow;
+	border-left: 100px solid transparent;
+	border-right: 100px solid transparent;
+}
