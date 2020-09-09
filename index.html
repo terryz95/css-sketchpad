@@ -1,28 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>CSS SketchPad</title>
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+	<link rel="stylesheet" href="base.css">
 	<link rel="stylesheet" href="effect.css">
 </head>
+
 <body>
-	<section class="card">
-		<div class="dynamic-heart">
-			<div class="heart"></div>
-			<div class="heart mask"></div>
+	<div id="sketch-container" class="swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<section class="card">
+					<!-- 一颗红心 -->
+					<div class="heart"></div>
+					<div class="heart mask"></div>
+				</section>
+				<section class="card">
+					<!-- 梯形 -->
+					<div class="trapezoid"></div>
+				</section>
+				<section class="card">
+					<!-- 圆和扇形 -->
+					<div class="pie"></div>
+				</section>
+				<section class="card">
+					<!-- 平行四边形 -->
+					<div class="parallelogram"></div>
+				</section>
+				<!-- <section class="card">
+					五角星还有问题
+					<div class="pentagram"></div>
+				</section> -->
+			</div>
+			<div class="swiper-slide">
+				<section class="card">
+					<!-- 泡泡提示框 -->
+					<div class="bubble">
+						<span>Bubble Tip Bubble Tip</span>
+					</div>
+				</section>
+			</div>
+			<div class="swiper-slide">
+				<section class="card">
+					<!-- 矩形，四周平切角 -->
+					<div class="notching"></div>
+				</section>
+				<section class="card">
+					<!-- 利用四周平切角矩形画个锤子 -->
+					<div class="hammer-box">
+						<div class="hammer"></div>
+					</div>
+				</section>
+				<section class="card">
+					<!-- 矩形，四周弧切角 -->
+					<div class="arc"></div>
+				</section>
+				<section class="card">
+					<!-- 利用四周弧切角矩形画个券 -->
+					<div class="coupon-box">
+						<div class="coupon coupon-left"></div>
+						<div class="coupon coupon-right"></div>
+					</div>
+				</section>
+			</div>
+			<div class="swiper-slide">
+				<section class="card">
+					<!-- 像便签的卡片 -->
+					<div class="corner"></div>
+				</section>
+				<section class="card">
+					<!-- 斜条纹背景 -->
+					<div class="stripe"></div>
+				</section>
+				<section class="card">
+					<!-- 混合背景 -->
+					<div class="mix-background"></div>
+				</section>
+			</div>
+			<div class="swiper-slide">
+				<section class="card">
+					<!-- 天气晴 -->
+					<div class="weather blue sunny">
+					</div>
+				</section>
+				<section class="card">
+					<!-- 天气多云 -->
+					<div class="weather blue cloudy">
+						<div class="shadow"></div>
+					</div>
+				</section>
+				<section class="card">
+					<!-- 天气多云转晴 -->
+					<div class="weather blue cloudy2sunny">
+						<div class="shadow"></div>
+					</div>
+				</section>
+			</div>
+			<div class="swiper-slide">
+				<section class="card">
+					<!-- 天气雨 -->
+					<div class="weather gray rainy">
+						<div class="shadow"></div>
+					</div>
+				</section>
+				<section class="card">
+					<!-- 天气雷暴 -->
+					<div class="weather gray thunder">
+						<div class="shadow"></div>
+					</div>
+				</section>
+				<section class="card">
+					<!-- 天气雪 -->
+					<div class="weather blue snowy">
+						<div class="shadow"></div>
+					</div>
+				</section>
+			</div>
+			<div class="swiper-slide">
+				<section class="card">
+					<!-- 深夜 -->
+					<div class="weather black night-sky"></div>
+				</section>
+				<section class="card">
+					<!-- 天气风 -->
+					<div class="weather blue">
+						<div class="breeze"></div>
+						<div class="rod"></div>
+					</div>
+				</section>
+				<section class="card">
+					<!-- 彩虹 -->
+					<div class="weather yellow rainbow">
+						<div class="shadow"></div>
+					</div>
+				</section>
+			</div>
 		</div>
-	</section>
-	<section class="card">
-		<div class="bubble">
-			<span>Bubble Tip</span>
-		</div>
-	</section>
-	<section class="card">
-		<div class="notching"></div>
-	</section>
-	<section class="card">
+		<div class="swiper-pagination"></div>
+	</div>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script>
+		var swiper = new Swiper('#sketch-container', {
+			grabCursor: true,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+				renderBullet: function (index, className) {
+					return '<span class="' + className + '">' + (index + 1) + '</span>';
+				},
+			},
+		});
+	</script>
+
+
+
+
+	<!-- <section class="card">
 		<div class="hammer-box">
 			<div class="hammer"></div>
 		</div>
@@ -99,14 +237,11 @@
 	</section>
 	<section class="card">
 		<div class="pentagram"></div>
-	</section>
-	<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
-	<script>
-		$(function(){
-			$('.dynamic-heart').click(function() {
-				$('.mask').toggleClass('active');
-			})
-		});
-	</script>
+	</section> -->
+
+
+
+
 </body>
+
 </html>
